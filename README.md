@@ -8,9 +8,9 @@ This application is a simple 2x3 matrix reducer. It solves two systems of equati
 - This application cannot take fractions as inputs, but it can take decimals.
 
 For example, the following two equations would be <strong>valid</strong>:
-<center>3x + 0.5y = 15</center>
-<center>x - 2y = -8</center><br>
+<br>3x + 0.5y = 15
+<br>x - 2y = -8
 
 The following two equations would be <strong>invalid</strong>:
-<center>4x + 0y = 16</center>
-<center>-2y = 8</center>
+<br>4x + 0y = 16
+<br>-2y = 8
