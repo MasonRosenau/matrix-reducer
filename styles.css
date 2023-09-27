@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f2f2f2;
+}
+
+h1 {
+    color: #333;
+}
+
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.row {
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.cell {
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 5px 5px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+}
+
+button:hover {
+    background-color: #555;
+}
+
+#error {
+    color: red;
+}
+
+#result {
+    font-weight: bold;
+    font-size: 1.2em; /* Bigger text size */
+}

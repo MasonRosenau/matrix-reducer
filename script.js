@@ -12,14 +12,19 @@ function domLoaded() {
 
 //on reduce button, pull numbers from cells and perform reduction
 function reduceMatrix() {
-    console.log("reduceMatrix()");
 
-    //make sure all 6 cells have numbers
-    verifyNumbers();
+    document.getElementById("result").innerHTML = "";
+    document.getElementById("error").innerHTML = "";
+
+    //make sure all 6 cells have numbers, else return
+    if(!verifyNumbers()){
+        return;
+    };
+
+    //obtain matrix from input fields
     let matrix = getMatrix();
     
     //perform reduction on 2d array
-
     //STEP 1: Divide row 1 by matrix[0][0] to make matrix[0][0] = 1
     let temp = matrix[0][0];
     for (let i = 0; i < matrix[0].length; i++) {
@@ -43,8 +48,7 @@ function reduceMatrix() {
     for (let i = 0; i < matrix[0].length; i++) {
         matrix[0][i] = parseFloat(matrix[0][i]) + (matrix[1][i] * temp);
     }
-    console.log(matrix);    
-
+ 
     //convert decimals to fractions
     const x = fractionObjToText(new Fraction(matrix[0][2]));
     const y = fractionObjToText(new Fraction(matrix[1][2]));
@@ -52,7 +56,6 @@ function reduceMatrix() {
     //display results
     const result = document.getElementById("result");
     result.innerHTML = "x = " + x + "<br />" + "y = " + y;
-
 }
 
 //verify each cell has a number only
@@ -74,16 +77,16 @@ function verifyNumbers() {
     const error = document.getElementById("error");
     if(hasError) {
         error.innerHTML = "Please ensure each cell has a number.";
+        return false;
     }
     else {
         error.innerHTML = "";
+        return true;
     }
-
 }
 
 //return the 2d array of numbers
 function getMatrix() {
-    console.log("getMatrix()");
     
     let matrix = [];
 
@@ -117,7 +120,6 @@ function fractionObjToText(fractionObj) {
 
 //on reset button, clear the matrix cells
 function resetMatrix() {
-    console.log("resetMatrix()");
 
     //clear any previous results or errors
     document.getElementById("result").innerHTML = "";
