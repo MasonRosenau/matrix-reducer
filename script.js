@@ -114,6 +114,11 @@ function fractionObjToText(fractionObj) {
     const sign = fractionObj.s === -1 ? '-' : '';
     const numerator = fractionObj.n;
     const denominator = fractionObj.d;
+
+    //handle whole numbers
+    if(denominator === 1) {
+        return `${sign}${numerator}`;
+    }
     
     return `${sign}${numerator}/${denominator}`;
 }
