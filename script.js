@@ -17,7 +17,6 @@ function reduceMatrix() {
     //make sure all 6 cells have numbers
     verifyNumbers();
     let matrix = getMatrix();
-    console.log(matrix)
     
     //perform reduction on 2d array
 
@@ -26,40 +25,38 @@ function reduceMatrix() {
     for (let i = 0; i < matrix[0].length; i++) {
         matrix[0][i] /= temp;
     }
-    // console.log("After step 1")
-    // console.log(matrix);
 
     //STEP 2: Multiply row 1 by -matrix[1][0] and add row 1 to row 2
     temp = -matrix[1][0];
     for (let i = 0; i < matrix[0].length; i++) {
         matrix[1][i] = parseFloat(matrix[1][i]) + (matrix[0][i] * temp);
     }
-    // console.log("After step 2");
-    // console.log(matrix);
 
     //STEP 3: Multiply row 2 by 1/matrix[1][1] to make matrix[1][1] = 1
     temp = matrix[1][1];
     for (let i = 0; i < matrix[0].length; i++) {
         matrix[1][i] /= temp;
     }
-    // console.log("After step 3");
-    // console.log(matrix);
 
     //STEP 4: Multiply row 2 by -matrix[0][1] and add row 2 to row 1
     temp = -matrix[0][1];
     for (let i = 0; i < matrix[0].length; i++) {
         matrix[0][i] = parseFloat(matrix[0][i]) + (matrix[1][i] * temp);
     }
-    // console.log("After step 4");
     console.log(matrix);    
 
-    // console.log("x = " + matrix[0][2])
-    // console.log("y = " + matrix[1][2])
+    //convert decimals to fractions
+    const x = fractionObjToText(new Fraction(matrix[0][2]));
+    const y = fractionObjToText(new Fraction(matrix[1][2]));
+
+    //display results
+    const result = document.getElementById("result");
+    result.innerHTML = "x = " + x + "<br />" + "y = " + y;
+
 }
 
 //verify each cell has a number only
 function verifyNumbers() {
-    console.log("verifyNumbers()");
 
     let hasError = false;
     
@@ -107,6 +104,15 @@ function getMatrix() {
     });
 
     return matrix;
+}
+
+//convert fraction object to string
+function fractionObjToText(fractionObj) {
+    const sign = fractionObj.s === -1 ? '-' : '';
+    const numerator = fractionObj.n;
+    const denominator = fractionObj.d;
+    
+    return `${sign}${numerator}/${denominator}`;
 }
 
 //on reset button, clear the matrix cells
